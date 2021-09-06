@@ -14,17 +14,31 @@ for ( let i = 0; i < 5; i++) {
 alert("Questa è la lista da memorizzare: " + listaNumeriRandom);
 console.log(listaNumeriRandom);
 
+/* la funzione che richiamo all'interno del setTimeout non deve contenere l'argomento perchè 
+* la funzione andrebbe ad essere eseguita prima del tempo stimato e,
+* una volta trascorso il termine dei secondi fissati andrebbe a richimare il return della funzione.
+*/
+// setTimeout (miaLista, 30000);  
 
-setTimeout (miaLista(), 10000);
+// Primo modo per inserire una funzione all'interno del setTimeout con argomento: 
+// - mettendolo come 3 parametro.
+// setTimeout (miaLista, 30000, 5)
+
+// Secondo modo per inserire una funzione all'interno del setTimeout con argomento: 
+// - inserendo una funzione anonima che richiama al suo interno la mia funzione
+setTimeout(function(){  
+    miaLista(5);
+}, 30000);
 
 
 
-function miaLista() {
+
+function miaLista(numero) {
     let listaNumeriUtente = [];
-    for ( let k = 0; k < 5; k++) {
+    for ( let k = 0; k < numero; k++) {
         numeroScelto = parseInt(prompt("Inserisci un numero tra 1 e 20"));
         console.log(numeroScelto);
-        for (let x = 0; x < listaNumeriRandom.length; x++) {
+        for (let x = 0; x < listaNumeriRandom.length; x++) { //anzichè inserire il ciclo for avrei potuto utilizzare incluse.
             if ( numeroScelto === listaNumeriRandom[x] ){
                 listaNumeriUtente.push(numeroScelto);
                 console.log(listaNumeriUtente)
