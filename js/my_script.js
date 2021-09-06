@@ -6,11 +6,18 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 
 let listaNumeriRandom = [];
-let numeroScelto;
+let numeroScelto = 5;
 
-for ( let i = 0; i < 5; i++) {
-    listaNumeriRandom.push(getRandomNumber(1, 100));
-} 
+// Creo un ciclo While per inserire 16 numeri randomici nell'array listaBombe se il numero generato
+    // non è già presente.
+
+    while (listaNumeriRandom.length < numeroScelto ) {
+        let num = getRandomNumber(1, 20);     
+        if ( !listaNumeriRandom.includes(num) ) {
+            listaNumeriRandom.push(num);
+        } 
+    }
+
 alert("Questa è la lista da memorizzare: " + listaNumeriRandom);
 console.log(listaNumeriRandom);
 
@@ -28,9 +35,7 @@ console.log(listaNumeriRandom);
 // - inserendo una funzione anonima che richiama al suo interno la mia funzione
 setTimeout(function(){  
     miaLista(5);
-}, 30000);
-
-
+}, 10000);
 
 
 function miaLista(numero) {
@@ -38,16 +43,17 @@ function miaLista(numero) {
     for ( let k = 0; k < numero; k++) {
         numeroScelto = parseInt(prompt("Inserisci un numero tra 1 e 20"));
         console.log(numeroScelto);
-        for (let x = 0; x < listaNumeriRandom.length; x++) { //anzichè inserire il ciclo for avrei potuto utilizzare incluse.
-            if ( numeroScelto === listaNumeriRandom[x] ){
-                listaNumeriUtente.push(numeroScelto);
-                console.log(listaNumeriUtente)
-            }
+        if ( listaNumeriRandom.includes(numeroScelto) && !listaNumeriUtente.includes(numeroScelto)){
+            listaNumeriUtente.push(numeroScelto);
+            console.log(listaNumeriUtente);
         } 
     } 
-    alert ("Hai indovinato " + listaNumeriUtente.length + " numeri. Esattamente i numeri: " + listaNumeriUtente);
     
+    
+    alert ("Hai indovinato " + listaNumeriUtente.length + " numeri. Esattamente i numeri: " + listaNumeriUtente);
 }
+
+
 
 
 
