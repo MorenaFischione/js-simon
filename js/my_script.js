@@ -43,14 +43,20 @@ function miaLista(numero) {
     for ( let k = 0; k < numero; k++) {
         numeroScelto = parseInt(prompt("Inserisci un numero tra 1 e 20"));
         console.log(numeroScelto);
-        if ( listaNumeriRandom.includes(numeroScelto) && !listaNumeriUtente.includes(numeroScelto)){
+        if ( !isNaN(numeroScelto) && numeroScelto >=1 && numeroScelto <= 20 && !listaNumeriUtente.includes(numeroScelto) ){
             listaNumeriUtente.push(numeroScelto);
-            console.log(listaNumeriUtente);
+            // console.log(listaNumeriUtente);
         } 
     } 
-    
-    
-    alert ("Hai indovinato " + listaNumeriUtente.length + " numeri. Esattamente i numeri: " + listaNumeriUtente);
+
+    let listaNumeriCorretti = [];
+    for ( let k = 0; k < listaNumeriUtente.length; k++){
+        if (listaNumeriRandom.includes(listaNumeriUtente[k])) {
+            listaNumeriCorretti.push(listaNumeriUtente[k]);
+            console.log(listaNumeriCorretti);
+        }
+    }
+    alert ("Hai indovinato " + listaNumeriCorretti.length + " numeri. Esattamente i numeri: " + listaNumeriUtente);
 }
 
 
